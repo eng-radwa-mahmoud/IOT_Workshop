@@ -1,3 +1,0 @@
-/home/radwa/IOT_Workshop/C++_Application/build/CMakeFiles/rebuild_cache.dir
-/home/radwa/IOT_Workshop/C++_Application/build/CMakeFiles/edit_cache.dir
-/home/radwa/IOT_Workshop/C++_Application/build/CMakeFiles/IoTSmartHome_App.dir

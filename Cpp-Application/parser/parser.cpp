@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "pareser.hpp"
-#include "../nlohmann/json.hpp"
+#include "nlohmann/json.hpp"
 
  std::vector<devices> parser::parse(std::string devicesBody)
  {

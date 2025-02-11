@@ -18,11 +18,19 @@ add_executable(IoTSmartHome_App
 
 # Add include directories for the project
 include_directories(IoTSmartHome_App PUBLIC
+<<<<<<< Updated upstream
     clientHandler
     parser
     deviceMAnager
    serviceManager
    nlohmann
+=======
+    clientHandler/
+    parser/
+    deviceMAnager/
+    serviceManger/
+   ../Cpp-Application/
+>>>>>>> Stashed changes
 )
 
 # Install the executable

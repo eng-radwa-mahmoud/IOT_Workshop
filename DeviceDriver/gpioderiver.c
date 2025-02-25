@@ -63,7 +63,7 @@ static int __init ledDriverInit()
         goto GPIO_DIR_ERROR;
     }
     
-}
+
 GPIO_DIR_ERROR:
     gpio_free(21);
 GPIO_REQUEST_ERROR:
@@ -75,7 +75,7 @@ classError:
 devAddError:
    unregister_chrdev_region(data.deviceNumber,1); 
    return -1;
-
+}
 static void __exit ledDriverExit()
 {
 

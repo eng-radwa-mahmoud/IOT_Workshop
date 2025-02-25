@@ -20,7 +20,7 @@ static struct structContainer data = {
     .fileOperations = {
         .owner = THIS_MODULE,
         .open = ledFile_open,
-        .close = ledFile_close,
+        .release = ledFile_close,
         .write = ledFile_write,
         .read = ledFile_read,
     },
@@ -29,27 +29,27 @@ static struct structContainer data = {
 static int __init ledDriver_init()
 {
     printk("led driver init\n");
-    if(alloc_chrdev_region(&data.deviceNumber,0,1,"Led-Driver") < 0)
+    if(alloc_chrdev_region(&structContainer data.deviceNumber,0,1,"Led-Driver") < 0)
     {
         printk("DEvice Number Couldn't be allocated");
         return -1;
     }
-    cdev_init(&data.cdevObject, &data.fileOperations);
+    cdev_init(&structContainer data.cdevObject, &structContainer data.fileOperations);
 
-    if(cdev_add(data.cdevObject,data.deviceNumber,1) == -1)
+    if(cdev_add(structContainer data.cdevObject,structContainer data.deviceNumber,1) == -1)
     {
      printk("DEvice registraion to kernel failed"); 
      return -1;  
      goto devAddError;
     }
 
-    if(data.class = class_create(THIS_MODULE,"LED") == NULL)
+    if(structContainer data.class = class_create(THIS_MODULE,"LED") == NULL)
     {
         printk("DEvice class creation failed"); 
         goto classError;
     }
 
-    if(device_create(data.class,NULL,data.deviceNumber,NULL,"Led-Driver")== NULL)
+    if(device_create(structContainer data.class,NULL,structContainer data.deviceNumber,NULL,"Led-Driver")== NULL)
     {
         printk("DEvice file creation failed"); 
         goto deviceFileError;
@@ -68,23 +68,23 @@ static int __init ledDriver_init()
 GPIO_DIR_ERROR:
     gpio_free(21);
 GPIO_REQUEST_ERROR:
-    device_destroy(data.class, data.deviceNumber);
+    device_destroy(structContainer data.class, structContainer data.deviceNumber);
 deviceFileError:
-    class_destroy(data.class);
+    class_destroy(structContainer data.class);
 classError:
-    cdev_del(&data.cdevObject);
+    cdev_del(&structContainer data.cdevObject);
 devAddError:
-   unregister_chrdev_region(data.deviceNumber,1); 
+   unregister_chrdev_region(structContainer data.deviceNumber,1); 
    return -1;
 }
 static void __exit ledDriver_exit()
 {
 	gpio_set_value(21,0);
 	gpio_free(21);
-	device_destroy(data.class, data.deviceNumber);
-	class_destroy(data.class);
-	cdev_del(&data.cdevObject);
-	unregister_chrdev_region(data.deviceNumber,1);
+	device_destroy(structContainer data.class, structContainer data.deviceNumber);
+	class_destroy(structContainer data.class);
+	cdev_del(&structContainer data.cdevObject);
+	unregister_chrdev_region(structContainer data.deviceNumber,1);
 }
 
 module_init(ledDriver_init);

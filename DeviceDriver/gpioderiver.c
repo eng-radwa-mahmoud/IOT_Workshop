@@ -36,20 +36,20 @@ static int __init ledDriver_init()
     }
     cdev_init(&data.cdevObject, &data.fileOperations);
 
-    if(cdev_add(data.cdevObject,data.deviceNumber,1) == -1)
+    if(cdev_add(&data.cdevObject,data.deviceNumber,1) == -1)
     {
      printk("DEvice registraion to kernel failed"); 
      return -1;  
      goto devAddError;
     }
 
-    if(data.class = class_create(THIS_MODULE,"LED") == NULL)
+    if((data.class = class_create(THIS_MODULE,"LED")) == NULL)
     {
         printk("DEvice class creation failed"); 
         goto classError;
     }
 
-    if(device_create(data.class,NULL,data.deviceNumber,NULL,"Led-Driver")== NULL)
+    if(device_create(&data.class,NULL,data.deviceNumber,NULL,"Led-Driver")== NULL)
     {
         printk("DEvice file creation failed"); 
         goto deviceFileError;

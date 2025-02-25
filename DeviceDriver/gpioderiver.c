@@ -35,7 +35,7 @@ static int __init ledDriverInit()
     }
     cdev_init(&data.cdevObject, &data.fileOperations);
 
-    if(cdev_add(&data.cdevObject,&data.deviceNumber,1) == -1)
+    if(cdev_add(data.cdevObject,data.deviceNumber,1) == -1)
     {
      printk("DEvice registraion to kernel failed"); 
      return -1;  
@@ -48,7 +48,7 @@ static int __init ledDriverInit()
         goto classError;
     }
 
-    if(device_create(data.class,NULL,&data.deviceNumber,NULL,"Led-Driver")== NULL)
+    if(device_create(data.class,NULL,data.deviceNumber,NULL,"Led-Driver")== NULL)
     {
         printk("DEvice file creation failed"); 
         goto deviceFileError;
@@ -80,7 +80,7 @@ static void __exit ledDriverExit()
 {
 	gpio_set_value(21,0);
 	gpio_free(21);
-	device_destroy(&data.class, &data.deviceNumber);
+	device_destroy(data.class, data.deviceNumber);
 	class_destroy(data.class);
 	cdev_del(&data.cdevObject);
 	unregister_chrdev_region(data.deviceNumber,1);

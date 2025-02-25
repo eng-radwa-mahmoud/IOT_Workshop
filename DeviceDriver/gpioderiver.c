@@ -4,9 +4,9 @@
 
 #include "fileoperations.h"
 
-MODULE_LICENSE("GPL")
-MODULE_AUTHOR("Radwa Mahmoud")
-MODULE_DESCRIPTION("Gpio driver to control led")
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Radwa Mahmoud");
+MODULE_DESCRIPTION("Gpio driver to control led");
 
 
 struct structContainer

@@ -67,7 +67,7 @@ static int __init ledDriverInit()
 GPIO_DIR_ERROR:
     gpio_free(21);
 GPIO_REQUEST_ERROR:
-    device_destroy(&data.class, &data.deviceNumber);
+    device_destroy(data.class, data.deviceNumber);
 deviceFileError:
     class_destroy(data.class);
 classError:

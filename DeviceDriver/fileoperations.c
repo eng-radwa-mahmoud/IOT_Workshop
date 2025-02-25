@@ -1,5 +1,4 @@
 
-#include <asm-generic/errno.h>
 #include "fileoperations.h"
 
 ssize_t ledFile_write(struct file *File, const char __user *user_buff, size_t count, loff_t *offs)
@@ -31,13 +30,13 @@ ssize_t ledFile_read(struct file *File, char __user *user_buffer, size_t count, 
     return -ENOSYS;
 }
 
-static int ledFile_open(struct inode *device_file, struct file *instance)
+int ledFile_open(struct inode *device_file, struct file *instance)
 {
     printk("%s dev_nr - open was called!\n", __FUNCTION__);
     return 0;
 }
 
-static int ledFile_close(struct inode *device_file, struct file *instance)
+int ledFile_close(struct inode *device_file, struct file *instance)
 {
     printk("dev_nr - close was called!\n");
     return 0;

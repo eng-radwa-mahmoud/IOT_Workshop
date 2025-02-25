@@ -26,7 +26,7 @@ struct structContainer data = {
     },
 };
 
-static int __init ledDriver_init()
+static int __init ledDriver_init(void)
 {
     printk("led driver init\n");
     if(alloc_chrdev_region(&data.deviceNumber,0,1,"Led-Driver") < 0)
@@ -77,7 +77,7 @@ devAddError:
    unregister_chrdev_region(data.deviceNumber,1); 
    return -1;
 }
-static void __exit ledDriver_exit()
+static void __exit ledDriver_exit(void)
 {
 	gpio_set_value(21,0);
 	gpio_free(21);

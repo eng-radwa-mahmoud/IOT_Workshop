@@ -9,20 +9,21 @@ MODULE_AUTHOR("Radwa Mahmoud");
 MODULE_DESCRIPTION("Gpio driver to control led");
 
 
-struct structContainer
-{
+struct structContainer {
     dev_t deviceNumber;
     struct cdev cdevObject;
     struct file_operations fileOperations;
-    struct class  *class;
-}data{
+    struct class *class;
+};
+
+static struct structContainer data = {
     .fileOperations = {
         .owner = THIS_MODULE,
         .open = ledFile_open,
         .close = ledFile_close,
         .write = ledFile_write,
-        .read = ledFile_read
-    }
+        .read = ledFile_read,
+    },
 };
 
 static int __init ledDriverInit()

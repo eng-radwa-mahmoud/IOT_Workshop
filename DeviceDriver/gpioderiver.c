@@ -23,7 +23,7 @@ struct structContainer
         .write = ledFile_write,
         .read = ledFile_read
     }
-}
+};
 
 static int __init ledDriverInit()
 {
@@ -42,7 +42,7 @@ static int __init ledDriverInit()
      goto devAddError;
     }
 
-    if(&data.class = class_create("LED") == NULL)
+    if(data.class = class_create(THIS_MODULE,"LED") == NULL)
     {
         printk("DEvice class creation failed"); 
         goto classError;
@@ -78,7 +78,12 @@ devAddError:
 }
 static void __exit ledDriverExit()
 {
-
+	gpio_set_value(21,0);
+	gpio_free(21);
+	device_destroy(&data.class, &data.deviceNumber);
+	class_destroy(data.class);
+	cdev_del(&data.cdevObject);
+	unregister_chrdev_region(data.deviceNumber,1);
 }
 
 module_init(ledDriverInit);

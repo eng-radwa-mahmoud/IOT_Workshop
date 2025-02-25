@@ -49,7 +49,7 @@ static int __init ledDriver_init()
         goto classError;
     }
 
-    if(device_create(&data.class,NULL,data.deviceNumber,NULL,"Led-Driver")== NULL)
+    if(device_create(data.class,NULL,data.deviceNumber,NULL,"Led-Driver")== NULL)
     {
         printk("DEvice file creation failed"); 
         goto deviceFileError;
